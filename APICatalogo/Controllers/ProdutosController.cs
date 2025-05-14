@@ -15,17 +15,6 @@ public class ProdutosController : ControllerBase
         _context = context;
     }
 
-    //[HttpGet("{valor:alpha:length(3)}")]
-    //public ActionResult<Produto> Get2()
-    //{
-    //    var produto = _context.Produtos.FirstOrDefault();
-    //    if (produto is null)
-    //    {
-    //        return NotFound();
-    //    }
-    //    return produto;
-    //}
-
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Produto>>> Get()
     {
@@ -79,7 +68,6 @@ public class ProdutosController : ControllerBase
     public ActionResult Delete(int id)
     {
         var produto = _context.Produtos.FirstOrDefault(p => p.ProdutoId == id);
-        //var produto = _context.Produtos.Find(id);
 
         if (produto is null)
         {
