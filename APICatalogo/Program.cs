@@ -7,10 +7,14 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers()
-      .AddJsonOptions(options =>
-         options.JsonSerializerOptions
-            .ReferenceHandler = ReferenceHandler.IgnoreCycles);
+builder.Services.AddControllers(opts =>
+{
+    opts.Filters.Add(typeof(ApiExceptionFilter));
+})
+    .AddJsonOptions(opts =>
+{
+    opts.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});
 
 builder.Services.AddScoped<ApiLoggingFilter>();
 
